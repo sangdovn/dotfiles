@@ -1,7 +1,6 @@
 #!/bin/bash
-
 # Directory where your dotfiles are located
-dotfiles_dir="$HOME/dotfiles"
+dotfiles_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # List of dotfiles to link
 dotfiles=( 
