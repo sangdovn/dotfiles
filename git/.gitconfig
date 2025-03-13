@@ -1,0 +1,9 @@
+[user]
+    name = Sang Do
+    email = dovansang97@gmail.com
+
+[core]
+    editor = vim
+
+[credential]
+	helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
