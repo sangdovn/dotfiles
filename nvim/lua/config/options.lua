@@ -1,65 +1,64 @@
 local o = vim.opt
 
--- ui
-o.number = true -- show line numbers
-o.relativenumber = true -- show relative line numbers
-o.termguicolors = true -- enable 24-bit true colors
-o.signcolumn = "yes" -- always show sign column
-o.cursorline = true -- highlight current line
-o.cmdheight = 2 -- height of command line
-o.colorcolumn = "80,100,120" -- vertical guide lines at 80/100/120 chars
+-- UI
+o.number = true
+o.relativenumber = true
+o.signcolumn = "yes"
+o.cursorline = true
+o.colorcolumn = "80,100,120"
+o.winborder = "rounded"
 o.list = true -- show invisible characters
 o.listchars = {
-  tab = "»·", -- tabs
-  lead = "·", -- leading spaces
-  trail = "·", -- trailing spaces
-  -- eol = "↴", -- end-of-line marker
-  nbsp = "␣", -- non-breaking spaces
+    tab = "»·", -- tabs
+    lead = "·", -- leading spaces
+    -- trail = "·", -- trailing spaces
+    -- eol = "↴", -- end-of-line marker
+    nbsp = "␣", -- non-breaking spaces
 }
-o.winborder = "rounded"
 
--- input
-o.mouse = "a" -- enable mouse support
-o.clipboard = "unnamedplus" -- use system clipboard
-o.backspace = { "indent", "eol", "start" } -- backspace behavior in insert mode
+-- Indent
+o.tabstop = 2 -- a Tab looks like 2 spaces
+o.shiftwidth = 2 -- indents by 2 spaces
+o.expandtab = true -- pressing Tab inserts spaces, not \t
+o.smartindent = true -- Neovim automatically adds indentation for code
 
--- indent
-o.tabstop = 2 -- tab width
-o.shiftwidth = 2 -- indent width
-o.expandtab = true -- use spaces
-o.smartindent = true -- auto indent
+-- Editing
+o.clipboard = "unnamedplus"
+o.backspace = { "indent", "eol", "start" }
 
--- text
-o.wrap = false -- no line wrap
-o.scrolloff = 10 -- keep lines around cursor
-o.sidescrolloff = 10 -- keep lines around cursor
-o.encoding = "UTF-8" -- file/text encoding
+-- Text
+o.wrap = false
+o.scrolloff = 10
+o.sidescrolloff = 10
 
--- search
-o.ignorecase = true -- case-insensitive search
-o.smartcase = true -- case-sensitive with uppercase
+-- Search
+o.ignorecase = true
+o.smartcase = true
 
--- splits
-o.splitright = true -- vertical split to right
-o.splitbelow = true -- horizontal split below
+-- Timing
+o.updatetime = 250 -- how long Neovim waits before doing background updates
+o.timeoutlen = 300 -- how long Neovim waits for the next key in a key sequence
 
--- timing
-o.updatetime = 100 -- faster updates
-o.timeoutlen = 300 -- key timeout
+-- Files
+o.swapfile = false
+o.backup = false
+o.autoread = true
 
--- files
-o.swapfile = false -- no swap files
-o.backup = false -- no backup files
-o.autoread = true -- auto reload files changed outside Neovim
-
--- persistent undo
+-- Undo
 local undodir = vim.fn.stdpath("data") .. "/undodir"
 
 if vim.fn.isdirectory(undodir) == 0 then
-  vim.fn.mkdir(undodir, "p") -- create the directory if missing
+    vim.fn.mkdir(undodir, "p") -- create the directory if missing
 end
 o.undodir = undodir -- location for undo history files
 o.undofile = true -- save undo history
 
--- completion
-o.completeopt = "menu,menuone,noselect,popup" -- completion menu
+-- Views / folds
+local viewdir = vim.fn.stdpath("state") .. "/view"
+
+if vim.fn.isdirectory(viewdir) == 0 then
+    vim.fn.mkdir(viewdir, "p")
+end
+
+o.viewdir = viewdir
+o.viewoptions = { "folds", "cursor" }
